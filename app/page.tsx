@@ -12,20 +12,43 @@ import { SubTitle } from "@/components/ui/text"
 
 const bioTimelines = [
   {
-    year: 1984,
-    description: "Born in Osaka (大阪), Japan.",
+    year: 2003,
+    description: "Born in Kyonpyaw, Ayeyarwady Region, Myanmar.",
   },
   {
-    year: 2010,
-    description: "Completed the Master's Program in the Graduate School of Information Science at Nara Institute of Science and Technology.",
+    year: 2019,
+    description: "Completed Grade 10, and then continued outside formal schooling during the COVID-19 era.",
   },
   {
-    year: 2010,
-    description: "Worked at Yahoo! Japan.",
+    year: 2023,
+    description: "Trained in web development at Fairway Technology.",
   },
   {
-    year: "2012–Present",
+    year: "2025–Present",
     description: "Working as a freelancer.",
+  },
+];
+
+const socialLinks = [
+  {
+    href: "https://github.com/kaungmyatkyawtiti",
+    icon: <RiGithubFill size={20} />,
+    label: "@kaungmyatkyawtiti",
+  },
+  {
+    href: "https://twitter.com/inkdrop_app",
+    icon: <RiFacebookBoxFill size={20} />,
+    label: "@NottNott",
+  },
+  {
+    href: "https://x.com",
+    icon: <RiTwitterXFill size={20} />,
+    label: "@kmktitit2003@gmail.com",
+  },
+  {
+    href: "https://instagram.com",
+    icon: <RiInstagramFill size={20} />,
+    label: "@nottnott2003",
   },
 ];
 
@@ -33,8 +56,8 @@ export default function Home() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-10">
       {/* Intro */}
-      <div className="mb-6 rounded-lg bg-white/45 p-3 text-center backdrop-blur-md dark:bg-white/5">
-        Hello, I&apos;m an indie app developer based in Japan!
+      <div className="mb-6 rounded-lg bg-white/45 p-3 text-center backdrop-blur-md dark:bg-white/10">
+        Hello, I&apos;m an indie app developer based in Myanmar!
       </div>
 
       {/* Header */}
@@ -42,7 +65,7 @@ export default function Home() {
         <div className="flex-1">
           <h1 className="text-4xl font-bold font-mplus">Kaung Myat Kyaw</h1>
           <p className="mt-1">
-            Digital Craftsman ( Artist / Developer / Designer )
+            Junior Web Developer ( Artist / Developer / Designer )
           </p>
         </div>
 
@@ -61,35 +84,17 @@ export default function Home() {
       {/* Work */}
       <section className="mt-8">
         <SubTitle>Work</SubTitle>
-        <p className="leading-relaxed">
-          Takuya is a freelance and a full-stack developer based in Osaka with a
-          passion for building digital services/stuff he wants. He has a knack
-          for all things launching products, from planning and designing all the
-          way to solving real-life problems with code. When not online, he loves
-          hanging out with his camera. Currently, he is living off of his own
-          product called{" "}
-          <Link
-            href="/works/inkdrop"
-            className="font-medium text-teal-500 hover:underline"
-          >
-            Inkdrop
-          </Link>
-          . He publishes content for marketing his products and his YouTube
-          channel called{" "}
-          <Link
-            href="https://www.youtube.com/devaslife"
-            target="_blank"
-            className="font-medium text-teal-500 hover:underline"
-          >
-            Dev as Life
-          </Link>{" "}
-          has more than 100k subscribers.
+        <p className="leading-relaxed text-foreground/85">
+          Hi, I’m Kaung Myat Kyaw, a junior full-stack developer focused on JavaScript and TypeScript.
+          I primarily work with Next.js and Express.js, building practical web applications with clean, maintainable code.
+          I enjoy learning by doing, solving real-world problems, and continuously improving my skills through hands-on projects.
+          I’m especially interested in modern frontend patterns, APIs, and creating user-friendly experiences that scale as I grow as a developer
         </p>
 
         <div className="mt-6 text-center">
           <Link
             href="/works"
-            className="inline-flex items-center gap-2 rounded-md bg-teal-500 px-4 py-2 font-semibold text-white hover:bg-teal-600"
+            className="btn-primary"
           >
             My portfolio
             <RiArrowRightLine size={20} />
@@ -104,9 +109,12 @@ export default function Home() {
         <ul className="space-y-2">
           {
             bioTimelines.map(bt => (
-              <li key={`${bt.year}-${bt.description}`} className="flex gap-4">
+              <li
+                key={`${bt.year}-${bt.description}`}
+                className="flex gap-4"
+              >
                 <span className="font-bold">{bt.year}</span>
-                <span>{bt.description}</span>
+                <span className="text-foreground/85">{bt.description}</span>
               </li>
             ))
           }
@@ -116,78 +124,46 @@ export default function Home() {
       {/* I Love */}
       <section className="mt-8">
         <SubTitle>I ♥</SubTitle>
-        <p>
-          Art, Music,{" "}
-          <Link
-            href="https://illust.odoruinu.net/"
-            target="_blank"
-            className="text-teal-500 hover:underline"
-          >
-            Drawing
-          </Link>
-          , Playing Drums,{" "}
-          <Link
-            href="https://500px.com/p/craftzdog"
-            target="_blank"
-            className="text-teal-500 hover:underline"
-          >
-            Photography
-          </Link>
-          , Leica, Machine Learning
+        <p className="text-foreground/85">
+          Art and drawing, sketching,{" "}
+          <span className="text-secondary">
+            watching TV shows and movies,
+          </span>
+          {" "} and experimenting with new creative concepts.
         </p>
       </section>
 
-      {/* Web */}
+      {/* Social */}
       <section className="mt-8">
         <SubTitle>On Social</SubTitle>
 
-        <ul className="space-y-2">
-          <li>
-            <SocialLink
-              href="https://github.com/craftzdog"
-              icon={<RiGithubFill />}
-              label="@craftzdog"
-            />
-          </li>
-          <li>
-            <SocialLink
-              href="https://twitter.com/inkdrop_app"
-              icon={<RiFacebookBoxFill />}
-              label="@inkdrop_app (English)"
-            />
-          </li>
-          <li>
-            <SocialLink
-              href="https://twitter.com/craftzdog"
-              icon={<RiTwitterXFill />}
-              label="@craftzdog (日本語)"
-            />
-          </li>
-          <li>
-            <SocialLink
-              href="https://instagram.com/craftzdog"
-              icon={<RiInstagramFill />}
-              label="@craftzdog"
-            />
-          </li>
+        <ul className="space-y-1">
+          {socialLinks.map((social) => (
+            <li key={social.href}>
+              <SocialLink
+                href={social.href}
+                icon={social.icon}
+                label={social.label}
+              />
+            </li>
+          ))}
         </ul>
       </section>
 
       {/* Newsletter */}
       <section className="mt-8">
         <SubTitle>Newsletter</SubTitle>
-        <p>
-          Join me on a behind-the-scenes coding journey. Weekly updates on
-          projects, tutorials, and videos
+        <p className="text-foreground/85">
+          Learning, experimenting, and building—follow my coding journey as a junior developer.
         </p>
 
-        <div className="mt-4 text-center">
+        <div className="mt-6 text-center">
           <Link
             href="https://www.devas.life/"
-            className="inline-flex items-center gap-2 rounded-md bg-teal-500 px-4 py-2 font-semibold text-white hover:bg-teal-600"
+            className="btn-primary"
           >
             <RiMailLine size={20} />
-            Sign up my newsletter here
+            Join my newsletter here
           </Link>
         </div>
       </section>
@@ -209,10 +185,10 @@ function SocialLink({
     <Link
       href={href}
       target="_blank"
-      className="inline-flex items-center gap-2 rounded-md px-2 py-1 text-teal-500 hover:bg-teal-500/10"
+      className="inline-flex items-center gap-2 rounded-md p-2 text-primary hover:bg-accent"
     >
       {icon}
-      <span>{label}</span>
+      <span className="font-semibold">{label}</span>
     </Link>
   )
 }

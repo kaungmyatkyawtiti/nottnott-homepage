@@ -8,15 +8,18 @@ import {
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import ThemedToggleBtn from "./ThemedToggleBtn";
+import cn from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
   const links = [
     {
       name: "About",
-      href: "/"
+      href: "/about"
     },
     {
       name: "Works",
@@ -47,19 +50,27 @@ export default function Navbar() {
   return (
     <>
       {/* center */}
-      <div className="hidden md:flex items-center gap-6">
+      <div className="hidden md:flex items-center gap-2">
         {
           links.map(link => (
             <Link
               key={link.href}
               href={link.href}
-              className="hover:underline"
+              className={cn(
+                "hover:underline p-2",
+                (pathname === link.href || pathname.startsWith(link.href + "/")) &&
+                "bg-teal-400 dark:bg-teal-500"
+              )}
             >
               {link.name}
             </Link>
           ))
         }
-        <Link href="/" className="flex items-center gap-1 hover:underline">
+        <Link
+          href="https://github.com/kaungmyatkyawtiti?tab=repositories"
+          target="_blank"
+          className="flex items-center gap-1 hover:underline"
+        >
           <RiGithubFill size={20} />
           Source
         </Link>

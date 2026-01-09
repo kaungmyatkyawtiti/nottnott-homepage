@@ -6,7 +6,7 @@ const Logo = () => {
     <Link href="/" scroll={false}>
       <div className='flex items-center gap-1'>
         <RiSeedlingFill size={20} />
-        <p className='font-mplus font-bold'>
+        <p className='font-mplus font-bold text-[17px]'>
           Kaung Myat Kyaw
         </p>
       </div>
