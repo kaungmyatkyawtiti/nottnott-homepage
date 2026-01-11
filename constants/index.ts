@@ -45,25 +45,25 @@ export const popularPosts = [
 
 export const works: Work[] = [
   {
-    id: "inkdrop",
-    title: "Inkdrop",
-    thumbnail: "/images/works/inkdrop_eyecatch.png",
-    description: "A Markdown note-taking app with 100+ plugins, cross-platform and encrypted data sync support",
+    link: "breeze-cast",
+    title: "Breeze Cast",
+    thumbnail: "/images/works/weather.png",
+    description: "A clean and responsive weather dashboard for viewing forecasts and searching city weather worldwide",
   },
   {
-    id: "walknote",
+    link: "walknote",
     title: "walknote",
     thumbnail: "/images/works/walknote_eyecatch.png",
     description: "Music recommendation app for iOS",
   },
   {
-    id: "fourpainters",
+    link: "fourpainters",
     title: "The four painters",
     thumbnail: "/images/works/the-four-painters_eyecatch.jpg",
     description: "A video work generated with deep learning, imitating famous four painters like Van Gogh",
   },
   {
-    id: "menkiki",
+    link: "menkiki",
     title: "Menkiki",
     thumbnail: "/images/works/menkiki_eyecatch.png",
     description: "An app that suggests ramen shops based on a photo",
@@ -72,19 +72,19 @@ export const works: Work[] = [
 
 export const collaborations: Work[] = [
   {
-    id: "margelo",
+    link: "margelo",
     title: "Margelo",
     thumbnail: "/images/works/margelo_eyecatch.png",
     description: "Elite app development agency based in Austria",
   },
   {
-    id: "modetokyo",
+    link: "modetokyo",
     title: "mode.tokyo",
     thumbnail: "/images/works/modetokyo_eyecatch.png",
     description: "A magazine to personally enjoy Japan",
   },
   {
-    id: "styly",
+    link: "styly",
     title: "Styly",
     thumbnail: "/images/works/styly_eyecatch.png",
     description: "VR creative tools for fashion brands",
@@ -93,19 +93,19 @@ export const collaborations: Work[] = [
 
 export const oldWorks: Work[] = [
   {
-    id: "pichu2",
+    link: "pichu2",
     title: "Pichu*Pichu",
     thumbnail: "/images/works/pichu2_eyecatch.png",
     description: "Twitter client app for iPhone Safari",
   },
   {
-    id: "freedbtagger",
+    link: "freedbtagger",
     title: "freeDBTagger",
     thumbnail: "/images/works/freedbtagger_eyecatch.png",
     description: "Automatic audio file tagging tool for Windows",
   },
   {
-    id: "amembo",
+    link: "amembo",
     title: "Amembo",
     thumbnail: "/images/works/amembo_eyecatch.png",
     description: "P2P private file sharing tool for Windows",

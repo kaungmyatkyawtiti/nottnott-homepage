@@ -71,7 +71,7 @@ export default function Home() {
 
         <div className="flex justify-center">
           <Image
-            src="/globe.svg"
+            src="/images/nott-nott.jpg"
             alt="Profile image"
             width={100}
             height={100}
@@ -84,7 +84,7 @@ export default function Home() {
       {/* Work */}
       <section className="mt-8">
         <SubTitle>Work</SubTitle>
-        <p className="leading-relaxed text-foreground/85">
+        <p className="para">
           Hi, I’m Kaung Myat Kyaw, a junior full-stack developer focused on JavaScript and TypeScript.
           I primarily work with Next.js and Express.js, building practical web applications with clean, maintainable code.
           I enjoy learning by doing, solving real-world problems, and continuously improving my skills through hands-on projects.
@@ -124,7 +124,7 @@ export default function Home() {
       {/* I Love */}
       <section className="mt-8">
         <SubTitle>I ♥</SubTitle>
-        <p className="text-foreground/85">
+        <p className="para">
           Art and drawing, sketching,{" "}
           <span className="text-secondary">
             watching TV shows and movies,
@@ -153,7 +153,7 @@ export default function Home() {
       {/* Newsletter */}
       <section className="mt-8">
         <SubTitle>Newsletter</SubTitle>
-        <p className="text-foreground/85">
+        <p className="para">
           Learning, experimenting, and building—follow my coding journey as a junior developer.
         </p>
 

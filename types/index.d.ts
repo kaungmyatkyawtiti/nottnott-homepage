@@ -1,5 +1,5 @@
 export interface Work {
-  id: string;
+  link: string;
   title: string,
   thumbnail: string,
   description: string,

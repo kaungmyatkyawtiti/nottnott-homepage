@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Work } from "@/types";
 
 interface GridItemProps {
   description: string;
@@ -27,7 +28,7 @@ export function GridItem({
           loading="eager"
           className="rounded-xl"
         />
-        <p className="text-[15px] font-light mt-2">
+        <p className="text-[15px] font-light mt-2 leading-relaxed">
           {description}
         </p>
       </Link>
@@ -36,43 +37,31 @@ export function GridItem({
 }
 
 interface WorkGridItemProps {
-  id: string;
-  title: string;
-  thumbnail: string;
-  category?: string;
-  children?: React.ReactNode;
+  work: Work;
 }
 
-export function WorkGridItem({
-  id,
-  title,
-  thumbnail,
-  category = "works",
-  children,
-}: WorkGridItemProps) {
+export function WorkGridItem({ work }: WorkGridItemProps) {
   return (
     <div className="w-full text-center">
       <Link
-        href={`/${category}/${id}`}
+        href={`/works/${work.link}`}
         scroll={false}
         className="group block cursor-pointer"
       >
         <Image
-          src={thumbnail}
-          alt={title}
+          src={work.thumbnail}
+          alt={work.title}
           width={500}
           height={300}
           loading="eager"
           className="rounded-xl"
         />
         <h3 className="mt-2 text-xl font-medium group-hover:underline">
-          {title}
+          {work.title}
         </h3>
-        {children && (
-          <p className="text-sm font-light text-foreground/85">
-            {children}
-          </p>
-        )}
+        <p className="text-sm font-light text-foreground/85 leading-relaxed">
+          {work.description}
+        </p>
       </Link>
     </div>
   );
