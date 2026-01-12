@@ -10,16 +10,16 @@ export const links = [
     href: "/works"
   },
   {
-    name: "Posts",
-    href: "/posts"
+    name: "Digital Arts",
+    href: "/digital-arts"
   },
   {
-    name: "Uses",
-    href: "/uses"
+    name: "Contact",
+    href: "/contact"
   },
 ]
 
-export const artworks = [
+export const arts = [
   {
     description: "How to build a portfolio website",
     thumbnail: '/images/contents/youtube-how-to-build-portfolio.jpg',
@@ -67,13 +67,13 @@ export const works: Work[] = [
     link: "breeze-cast",
     title: "Breeze Cast",
     thumbnail: "/images/works/weather.png",
-    description: "A clean and responsive weather dashboard for viewing forecasts and searching city weather worldwide",
+    description: "Weather dashboard for viewing forecasts and searching city weather worldwide",
   },
   {
-    link: "walknote",
-    title: "walknote",
-    thumbnail: "/images/works/walknote_eyecatch.png",
-    description: "Music recommendation app for iOS",
+    link: "simple-blog",
+    title: "Simple Blog",
+    thumbnail: "/images/works/blog.png",
+    description: "A real-time social blogging platform.",
   },
   {
     link: "fourpainters",

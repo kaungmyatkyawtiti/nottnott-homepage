@@ -75,20 +75,20 @@ export default function Home() {
             alt="Profile image"
             width={100}
             height={100}
-            className="overflow-hidden rounded-full border border-white"
+            className="overflow-hidden rounded-full border border-border"
             loading="eager"
           />
         </div>
       </div>
 
-      {/* Work */}
+      {/* About */}
       <section className="mt-8">
-        <SubTitle>Work</SubTitle>
+        <SubTitle>About</SubTitle>
         <p className="para">
           Hi, I’m Kaung Myat Kyaw, a junior full-stack developer focused on JavaScript and TypeScript.
           I primarily work with Next.js and Express.js, building practical web applications with clean, maintainable code.
           I enjoy learning by doing, solving real-world problems, and continuously improving my skills through hands-on projects.
-          I’m especially interested in modern frontend patterns, APIs, and creating user-friendly experiences that scale as I grow as a developer
+          I’m especially interested in modern frontend patterns, APIs, and creating user-friendly experiences that scale as I grow as a developer.
         </p>
 
         <div className="mt-6 text-center">
@@ -155,11 +155,12 @@ export default function Home() {
         <SubTitle>Newsletter</SubTitle>
         <p className="para">
           Learning, experimenting, and building—follow my coding journey as a junior developer.
+          Whether you have a question or just want to message me, my inbox is always open!
         </p>
 
         <div className="mt-6 text-center">
           <Link
-            href="https://www.devas.life/"
+            href="/contact"
             className="btn-primary"
           >
             <RiMailLine size={20} />

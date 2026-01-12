@@ -10,11 +10,11 @@ export default function page() {
       </Title>
 
       <p className="para">
-        This is a modern, dark-themed weather dashboard designed for a clean and fast user experience.
+        Weather dashboard designed for a clean and fast user experience.
         It allows users to track real-time weather data for their current location while providing a powerful search tool to explore cities worldwide.
       </p>
       <p className="para">
-        The app features a personalized favorites system and a &quot;recent searches&quot; history, making it easy to switch between saved locations.
+        The app features a personalized favorites system and recent searches history, making it easy to switch between saved locations.
         With detailed data points like humidity, wind speed, and a 5-day forecast—all visualized through sleek cards and
         interactive charts—it combines high-level functionality with a professional, minimal design.
       </p>
@@ -40,6 +40,19 @@ export default function page() {
         <li>
           <Meta>Stack</Meta>
           <span>Next.js, Shadcn</span>
+        </li>
+
+        <li>
+          <Meta>Inspiration</Meta>
+          <Link
+            href="https://github.com/kaungmyatkyawtiti/weather-dashboard"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-secondary hover:underline"
+          >
+            https://www.youtube.com/watch?v=BCp_5PoKrvI
+            <RiExternalLinkLine size={20} className="ml-2 inline-block" />
+          </Link>
         </li>
 
         <li>

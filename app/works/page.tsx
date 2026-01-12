@@ -17,7 +17,7 @@ function WorkSection({ items }: { items: Work[] }) {
 
 export default function Works() {
   return (
-    <div title="Works" className="mb-6">
+    <main title="Works" className="mb-6">
       <div className="mx-auto max-w-3xl px-4">
         <h2 className="work-title">Works</h2>
         <WorkSection items={works} />
@@ -32,6 +32,6 @@ export default function Works() {
         <h2 className="work-title">Old works</h2>
         <WorkSection items={oldWorks} />
       </div>
-    </div>
+    </main>
   );
 }

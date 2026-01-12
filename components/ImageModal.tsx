@@ -2,7 +2,7 @@
 
 import { useDismiss } from '@/hooks/useDismiss';
 import Image from 'next/image'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
 interface ImageModalProps {
   src: string;
@@ -25,7 +25,7 @@ export const ImageModal = ({
     >
       <div
         ref={containerRef}
-        className="relative max-h-[80vh] max-w-[80vw] "
+        className="relative max-h-[90vh] max-w-[90vw] "
       >
         <Image
           src={src}
