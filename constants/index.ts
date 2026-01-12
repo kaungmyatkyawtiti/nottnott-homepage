@@ -1,6 +1,25 @@
 import { Work } from "@/types";
 
-export const popularPosts = [
+export const links = [
+  {
+    name: "About",
+    href: "/about"
+  },
+  {
+    name: "Works",
+    href: "/works"
+  },
+  {
+    name: "Posts",
+    href: "/posts"
+  },
+  {
+    name: "Uses",
+    href: "/uses"
+  },
+]
+
+export const artworks = [
   {
     description: "How to build a portfolio website",
     thumbnail: '/images/contents/youtube-how-to-build-portfolio.jpg',

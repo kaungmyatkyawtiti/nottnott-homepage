@@ -6,46 +6,21 @@ import {
   RiGithubFill,
 } from "@remixicon/react";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import ThemedToggleBtn from "./ThemedToggleBtn";
 import cn from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { useDismiss } from "@/hooks/useDismiss";
+import { links } from "@/constants";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
-  const links = [
-    {
-      name: "About",
-      href: "/about"
-    },
-    {
-      name: "Works",
-      href: "/works"
-    },
-    {
-      name: "Posts",
-      href: "/posts"
-    },
-    {
-      name: "Uses",
-      href: "/uses"
-    },
-  ]
+  const handleClose = () => setIsOpen(false);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  useDismiss(containerRef, handleClose);
 
   return (
     <>
@@ -104,7 +79,7 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={handleClose}
                   >
                     <li
                       className="block px-4 py-2 hover:bg-input hover:underline"

@@ -4,34 +4,31 @@ import { Work } from "@/types";
 
 interface GridItemProps {
   description: string;
-  href: string;
   thumbnail: string;
+  onClick: () => void
 }
 
 export function GridItem({
   description,
-  href,
   thumbnail,
+  onClick,
 }: GridItemProps) {
   return (
-    <div className="w-full text-center">
-      <Link
-        href={href}
-        target="_blank"
-        className="group block cursor-pointer"
-      >
-        <Image
-          src={thumbnail}
-          alt={description}
-          width={500}
-          height={300}
-          loading="eager"
-          className="rounded-xl"
-        />
-        <p className="text-[15px] font-light mt-2 leading-relaxed">
-          {description}
-        </p>
-      </Link>
+    <div
+      className="w-full text-center cursor-pointer group"
+      onClick={onClick}
+    >
+      <Image
+        src={thumbnail}
+        alt={description}
+        width={500}
+        height={300}
+        loading="eager"
+        className="rounded-xl"
+      />
+      <p className="text-[15px] font-light mt-2 leading-relaxed text-foreground/85 group-hover:text-foreground">
+        {description}
+      </p>
     </div>
   );
 }
