@@ -5,6 +5,7 @@ import Providers from "@/components/Providers";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Blank3D from "@/components/Blank3D";
+import { Toaster } from "sonner";
 
 const mplus = M_PLUS_Rounded_1c({
   weight: ['500'],
@@ -34,6 +35,8 @@ export default function RootLayout({
             <div className="max-w-xl mx-auto px-4">
               <Blank3D />
               {children}
+
+              <Toaster richColors />
               <Footer />
             </div>
           </main>

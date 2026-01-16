@@ -4,9 +4,8 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import ThemedBtn from "./ThemedBtn";
 import { RiMoonClearLine, RiSunLine } from "@remixicon/react";
-import cn from "@/lib/utils";
 
-const ThemedToggleBtn = () => {
+export default function ModeToggle() {
   const [mount, setMount] = useState(false);
   const { systemTheme, theme, setTheme } = useTheme();
 
@@ -43,5 +42,3 @@ const ThemedToggleBtn = () => {
     </button>
   )
 };
-
-export default ThemedToggleBtn;

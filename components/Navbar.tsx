@@ -7,11 +7,11 @@ import {
 } from "@remixicon/react";
 import Link from "next/link";
 import { useRef, useState } from "react";
-import ThemedToggleBtn from "./ThemedToggleBtn";
 import cn from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { useDismiss } from "@/hooks/useDismiss";
 import { links } from "@/constants";
+import ModeToggle from "./ModeToggle";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,7 +56,7 @@ export default function Navbar() {
         className="flex items-center gap-3 relative"
         ref={containerRef}
       >
-        <ThemedToggleBtn />
+        <ModeToggle />
 
         <button
           onClick={() => setIsOpen((prev) => !prev)}
