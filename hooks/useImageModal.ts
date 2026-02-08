@@ -11,11 +11,11 @@ type ModalAction =
 function modalReducer(state: ModalState, action: ModalAction): ModalState {
   switch (action.type) {
     case "OPEN":
-      return action.payload
+      return action.payload;
     case "CLOSE":
-      return null
+      return null;
     default:
-      return state
+      return state;
   }
 }
 
