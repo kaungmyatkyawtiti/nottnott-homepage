@@ -50,13 +50,13 @@ export default function WorkSection() {
             )}
           >
             {item} [{item === "all" ? totalCount : countByTypes[item] ?? 0}]
-            {item === selectedTab ? (
+            {item === selectedTab && (
               <motion.div
                 layoutId="underline"
                 id="underline"
                 className="absolute bottom-0 left-0 right-0 h-1 bg-brand-foreground"
               />
-            ) : null}
+            )}
           </motion.li>
         ))}
       </ul>

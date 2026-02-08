@@ -13,11 +13,19 @@ import { useDismiss } from "@/hooks/useDismiss";
 import { NAV_LINKS } from "@/constants";
 import ModeToggle from "./ModeToggle";
 import { AnimatePresence, motion } from "motion/react";
+import { Cursor, Position, Tab } from "./animations/SlideTab";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const [position, setPosition] = useState<Position>({
+    left: 0,
+    width: 0,
+    opacity: 0,
+  });
+
+  const [activeTabRef, setActiveTabRef] = useState<HTMLLIElement | null>(null);
 
   const handleClose = () => setIsOpen(false);
 
@@ -26,7 +34,19 @@ export default function Navbar() {
   return (
     <>
       <ul
-        className="hidden md:flex items-center gap-2.5"
+        onMouseLeave={() => {
+          if (activeTabRef) {
+            const { offsetLeft, offsetWidth } = activeTabRef;
+            setPosition({
+              left: offsetLeft,
+              width: offsetWidth,
+              opacity: 1,
+            });
+          } else {
+            setPosition((prev) => ({ ...prev, opacity: 0 }));
+          }
+        }}
+        className="hidden md:flex items-center gap-2.5 relative"
       >
         {NAV_LINKS.map(link => {
           const isActive =
@@ -34,21 +54,20 @@ export default function Navbar() {
             pathname.startsWith(`${link.href}/`)
 
           return (
-            <Link
-              key={link.href}
-              href={link.href}
-            >
-              <li
-                className={cn(
-                  "relative hover:underline p-1.5 px-2.5 focus:outline-none text-[15px]",
-                  isActive && "bg-brand-foreground"
-                )}
+            <Link key={link.href} href={link.href}>
+              <Tab
+                setPosition={setPosition}
+                isActive={isActive}
+                setActiveTabRef={setActiveTabRef}
               >
                 {link.name}
-              </li>
+              </Tab>
             </Link>
           )
         })}
+
+        <Cursor position={position} />
+
         <Link
           href="https://github.com/kaungmyatkyawtiti?tab=repositories"
           target="_blank"

@@ -32,7 +32,7 @@ export default function HomePage() {
             alt="Profile image"
             width={100}
             height={100}
-            className="overflow-hidden rounded-full border border-border"
+            className="overflow-hidden rounded-full border border-stone-400"
             loading="eager"
           />
         </div>

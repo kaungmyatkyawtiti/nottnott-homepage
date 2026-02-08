@@ -163,7 +163,7 @@
 }
 
 @utility para {
-  @apply text-justify indent-4 hyphens-auto leading-relaxed text-foreground/80;
+  @apply text-justify indent-4 hyphens-auto leading-relaxed text-foreground/90;
 }
 
 @utility form-label {
