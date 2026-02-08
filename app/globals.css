@@ -47,6 +47,9 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-foreground-glass: var(--brand-foreground-glass);
 }
 
 :root {
@@ -69,6 +72,9 @@
   --border: oklch(0.74 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
+
+  --brand-foreground: oklch(0.8137 0.0997 234.24);
+  --brand-foreground-glass: oklch(0.8137 0.0997 234.24 / 0.2);
 }
 
 .dark {
@@ -92,7 +98,8 @@
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
 
-  --brand-foreground: oklch(0.8699 0.0661 184.1);
+  --brand-foreground: oklch(0.6706 0.1599 47.15);
+  --brand-foreground-glass: oklch(0.6706 0.1599 47.15 / 0.2);
 }
 
 @layer base {
@@ -110,6 +117,10 @@
     color: var(--foreground);
   }
 
+  button {
+    @apply focus:outline-none hover:opacity-85;
+  }
+
   input:-webkit-autofill,
   textarea:-webkit-autofill,
   select:-webkit-autofill {
@@ -117,23 +128,38 @@
     -webkit-text-fill-color: var(--foreground);
     transition: background-color 9999s ease-in-out 0s;
   }
+}
 
-  html.dark [data-hide-on-theme="dark"],
-  html.light [data-hide-on-theme="light"] {
-    display: none;
-  }
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+
+@utility col-center {
+  @apply flex flex-col items-center justify-center;
+}
+
+@utility flex-between {
+  @apply flex items-center justify-between;
+}
+
+@utility page-container {
+  @apply py-10 md:py-16;
+}
+
+@utility hover-effect {
+  @apply transition-all duration-300 ease-in-out;
 }
 
 @utility themed-btn {
-  @apply bg-[#7c5ecd] hover:bg-[#654fb2] dark:bg-[#f0d497] dark:hover:bg-[#d6af70] text-white dark:text-black p-2 rounded-md focus:outline-none;
+  @apply bg-[#7c5ecd] dark:bg-[#f0d497] text-white dark:text-black p-2 rounded-md;
 }
 
 @utility btn-primary {
-  @apply inline-flex items-center gap-2 rounded-md bg-primary hover:bg-primary/90 px-4 py-2 font-semibold text-primary-foreground focus:outline-none;
+  @apply flex-center gap-2 rounded-md bg-primary px-4 py-2 font-semibold text-primary-foreground text-sm md:text-[15px];
 }
 
-@utility work-title {
-  @apply mb-4 text-xl font-semibold;
+@utility subtitle {
+  @apply relative mb-4 inline-block text-[1.15rem] md:text-[1.4rem] font-semibold font-mplus capitalize;
 }
 
 @utility para {
@@ -141,14 +167,14 @@
 }
 
 @utility form-label {
-  @apply flex items-center gap-2 font-medium mb-1 text-foreground/80;
+  @apply flex items-center gap-2 font-medium mb-1 text-foreground/80 text-sm md:text-base;
 }
 
 @utility form-input {
-  @apply w-full rounded-sm border px-3 py-2;
+  @apply w-full rounded-sm border px-3 py-2 text-sm md:text-base;
 
   &:focus {
-    @apply outline-none ring-2 ring-indigo-500 border-border/30;
+    @apply outline-none ring-2 ring-indigo-500 dark:ring-primary border-border/30;
   }
 
   &.error {
@@ -160,6 +186,10 @@
   }
 }
 
-@utility form-error {
-  @apply font-mplus text-destructive ml-0.5 mt-1.5 text-sm;
+@utility contact-group {
+  @apply relative space-y-1.5;
+}
+
+@utility error-tooltip {
+  @apply absolute right-0 top-full mt-0.5 px-3 py-1 rounded-md bg-destructive text-white text-xs shadow-lg z-50 whitespace-nowrap overflow-x-auto;
 }

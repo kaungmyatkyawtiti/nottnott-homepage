@@ -1,15 +1,12 @@
 import ContactForm from "@/components/ContactForm";
+import { SubTitle } from "@/components/ui/text";
 import { RiMailLine, RiMapPinLine, RiPhoneLine } from "@remixicon/react";
 import Link from "next/link";
 
-export default function Page() {
+export default function ContactPage() {
   return (
-    <main
-      title="Works"
-      className="mx-auto max-w-3xl px-4 py-8"
-    >
-
-      <h2 className="work-title mb-4">Contact Me</h2>
+    <main title="Contact" className="page-container space-y-10">
+      <SubTitle>Contact Me</SubTitle>
       <p className="para">
         I am currently available for freelance work and full-time positions.
         Feel free to reach out.
@@ -17,8 +14,10 @@ export default function Page() {
 
       <ContactForm />
 
-      <div className="">
-        <h3 className="mb-5 font-semibold uppercase tracking-wide text-secondary font-mplus">
+      <section
+        className="space-y-6"
+      >
+        <h3 className="font-semibold uppercase tracking-wide text-secondary font-mplus">
           Other ways to Contact me
         </h3>
 
@@ -45,7 +44,7 @@ export default function Page() {
             </Link>
           </div>
         </div>
-      </div>
+      </section>
     </main>
   )
 }

@@ -30,7 +30,7 @@ export default function RootLayout({
         className={mplus.variable}
       >
         <Providers>
-          <main className="pb-8">
+          <main>
             <Header />
             <div className="max-w-xl mx-auto px-4">
               <Blank3D />

@@ -9,10 +9,13 @@ interface Props {
 
 export default function Providers({ children }: Props) {
   return (
-    <ThemeProvider attribute="class">
-      <main>
-        {children}
-      </main>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      {children}
     </ThemeProvider>
   )
 }

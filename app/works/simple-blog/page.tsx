@@ -1,10 +1,32 @@
+"use client";
+
+import { ImageModal } from "@/components/ImageModal";
 import { Badge, Meta, Title, WorkImage } from "@/components/ui/work";
+import { useImageModal } from "@/hooks/useImageModal";
 import { RiExternalLinkLine } from "@remixicon/react";
+import { AnimatePresence } from "motion/react";
 import Link from "next/link"
 
-export default function page() {
+const IMAGES = [
+  {
+    src: "/images/works/blog.png",
+    alt: "Blog",
+  },
+  {
+    src: "/images/works/blog2.png",
+    alt: "Blog 2",
+  },
+];
+
+export default function SimpleBlogPage() {
+  const { activeImage, openImageModal, closeImageModal } = useImageModal()
+
+  const handleOpenModal = (img: { src: string, alt: string }) => () => {
+    openImageModal(img);
+  };
+
   return (
-    <div className="space-y-4 my-4">
+    <main className="space-y-4 page-container relative">
       <Title>
         Simple Blog<Badge>2024</Badge>
       </Title>
@@ -49,8 +71,24 @@ export default function page() {
 
       </ul>
 
-      <WorkImage src="/images/works/blog.png" alt="Blog" />
-      <WorkImage src="/images/works/blog2.png" alt="Blog" />
-    </div>
+      {IMAGES.map((img, i) => (
+        <WorkImage
+          key={i}
+          src={img.src}
+          alt={img.alt}
+          onClick={handleOpenModal(img)}
+        />
+      ))}
+
+      <AnimatePresence initial={false}>
+        {activeImage && (
+          <ImageModal
+            src={activeImage.src}
+            alt={activeImage.alt}
+            onClose={closeImageModal}
+          />
+        )}
+      </AnimatePresence>
+    </main>
   )
 }

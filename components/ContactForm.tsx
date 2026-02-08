@@ -9,9 +9,12 @@ import {
   RiSendPlane2Fill,
   RiMessageLine,
 } from "@remixicon/react";
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
+import InteractiveBtn from "./animations/InteractiveBtn";
 
 const contactSchema = z.object({
   name: z
@@ -30,7 +33,15 @@ const contactSchema = z.object({
 
 export type ContactFormInputs = z.infer<typeof contactSchema>;
 
+const defaultValues = {
+  name: '',
+  email: '',
+  letter: '',
+}
+
 export default function ContactForm() {
+  const [shakeTrigger, setShakeTrigger] = useState(0);
+
   const {
     register,
     handleSubmit,
@@ -38,22 +49,20 @@ export default function ContactForm() {
     formState: { errors },
   } = useForm<ContactFormInputs>({
     resolver: zodResolver(contactSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      letter: '',
-    },
+    defaultValues,
   })
 
   const onSubmit: SubmitHandler<ContactFormInputs> = async (data) => {
     try {
-      await sendEmail(data);
+      const result = await sendEmail(data);
+      console.log('Contact submit result', result);
       toast.success("Message sent successfully!");
     } catch (error) {
+      console.log("Contact submit error", error)
       toast.error("Something went wrong");
     } finally {
       reset(
-        { name: "", email: "", letter: "" },
+        defaultValues,
         { keepErrors: true }
       );
     }
@@ -62,11 +71,17 @@ export default function ContactForm() {
   return (
     <form
       id="contact-form"
-      onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6 my-10"
+      onSubmit={handleSubmit(
+        onSubmit,
+        () => { setShakeTrigger((prev) => prev + 1) }
+      )}
+      className="space-y-7"
     >
-      <div>
-        <label className={cn("form-label", errors.name && "text-destructive")}>
+      <div className="contact-group">
+        <label className={cn(
+          "form-label",
+          errors.name && "text-destructive"
+        )}>
           <RiUser3Line size={18} />
           Name
         </label>
@@ -78,13 +93,18 @@ export default function ContactForm() {
             errors.name && "error"
           )}
         />
-        <p className="form-error">
-          {errors.name?.message}
-        </p>
+
+        <ErrorTooltip
+          error={errors.name?.message}
+          shakeTrigger={shakeTrigger}
+        />
       </div>
 
-      <div>
-        <label className={cn("form-label", errors.email && "text-destructive")}>
+      <div className="contact-group">
+        <label className={cn(
+          "form-label",
+          errors.email && "text-destructive"
+        )}>
           <RiMailLine size={18} />
           Email
         </label>
@@ -96,13 +116,18 @@ export default function ContactForm() {
             errors.email && "error"
           )}
         />
-        <p className="form-error">
-          {errors.email?.message}
-        </p>
+
+        <ErrorTooltip
+          error={errors.email?.message}
+          shakeTrigger={shakeTrigger}
+        />
       </div>
 
-      <div>
-        <label className={cn("form-label", errors.letter && "text-destructive")}>
+      <div className="contact-group">
+        <label className={cn(
+          "form-label",
+          errors.letter && "text-destructive"
+        )}>
           <RiMessageLine size={18} />
           Message
         </label>
@@ -111,23 +136,59 @@ export default function ContactForm() {
           rows={5}
           placeholder="Your message*"
           className={cn(
-            "form-input resize-none",
+            "form-input resize-none mb-0",
             errors.letter && "error"
           )}
         />
-        <p className="form-error">
-          {errors.letter?.message}
-        </p>
+
+        <ErrorTooltip
+          error={errors.letter?.message}
+          shakeTrigger={shakeTrigger}
+        />
       </div>
 
-      <button
-        className="btn-primary"
+      <InteractiveBtn
         type="submit"
         form="contact-form"
       >
         Send message
         <RiSendPlane2Fill size={20} />
-      </button>
+      </InteractiveBtn>
     </form>
   )
+}
+
+interface ErrorTooltipProps {
+  error?: string;
+  shakeTrigger: number;
+}
+
+function ErrorTooltip({
+  error,
+  shakeTrigger
+}: ErrorTooltipProps) {
+  return (
+    <AnimatePresence
+      initial={false}
+      mode="popLayout"
+    >
+      {error && (
+        <motion.span
+          key={shakeTrigger}
+          className="error-tooltip"
+          initial={{ opacity: 0, y: -4 }}
+          animate={{
+            opacity: 1,
+            x: [0, -4, 4, -3, 3, -2, 2, 0],
+          }}
+          exit={{ opacity: 0 }}
+          transition={{
+            duration: 0.35,
+            ease: "easeInOut",
+          }}
+        >
+          {error}
+        </motion.span>)}
+    </AnimatePresence>
+  );
 }

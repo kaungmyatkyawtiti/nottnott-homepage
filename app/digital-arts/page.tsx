@@ -1,40 +1,44 @@
 'use client'
 
-import { useState } from 'react'
-import { GridItem } from '@/components/GridItem'
-import { arts } from '@/constants'
+import { ArtGridItem } from '@/components/GridItem'
+import { ARTS } from '@/constants'
 import { ImageModal } from '@/components/ImageModal'
+import { SubTitle } from '@/components/ui/text'
+import { AnimatePresence } from 'motion/react'
+import { useImageModal } from '@/hooks/useImageModal'
 
 const ArtPage = () => {
-  const [activeImg, setActiveImg] = useState<string | null>(null);
+  const { activeImage, openImageModal, closeImageModal } = useImageModal()
+
+  const handleOpenModal = (src: string, alt: string) => () => {
+    openImageModal({ src, alt });
+  };
 
   return (
-    <main title="Arts">
-      <div className="max-w-5xl mx-auto px-5 py-10">
-        <h3 className="text-xl font-semibold mb-4">My Digital Arts</h3>
+    <main className='page-container' title="Arts">
+      <section>
+        <SubTitle className='mb-6'>My Digital Arts</SubTitle>
 
-        <section>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {arts.map((art, index) => (
-              <GridItem
-                key={index}
-                thumbnail={art.thumbnail}
-                description={art.description}
-                onClick={() => setActiveImg(art.thumbnail)}
-              />
-            ))}
-          </div>
-        </section>
-      </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {ARTS.map((art, index) => (
+            <ArtGridItem
+              key={index + `${art.thumbnail}`}
+              art={art}
+              onClick={handleOpenModal(art.thumbnail, art.title)}
+            />
+          ))}
+        </div>
 
-      {
-        activeImg && (
-          <ImageModal
-            src={activeImg}
-            onClose={() => setActiveImg(null)}
-          />
-        )
-      }
+        <AnimatePresence initial={false}>
+          {activeImage && (
+            <ImageModal
+              src={activeImage.src}
+              alt={activeImage.alt}
+              onClose={closeImageModal}
+            />
+          )}
+        </AnimatePresence>
+      </section>
     </main>
   )
 }

@@ -1,67 +1,24 @@
 import Image from "next/image"
 import Link from "next/link"
 import {
-  RiGithubFill,
-  RiTwitterXFill,
-  RiInstagramFill,
   RiArrowRightLine,
   RiMailLine,
-  RiFacebookBoxFill,
 } from "@remixicon/react"
 import { SubTitle } from "@/components/ui/text"
+import InteractiveBtn from "@/components/animations/InteractiveBtn";
+import { BIO_TIMELINES, SOCIAL_LINKS } from "@/constants";
+import { SocialLink } from "@/types";
 
-const bioTimelines = [
-  {
-    year: 2003,
-    description: "Born in Kyonpyaw, Ayeyarwady Region, Myanmar.",
-  },
-  {
-    year: 2019,
-    description: "Completed Grade 10, and then continued outside formal schooling during the COVID-19 era.",
-  },
-  {
-    year: 2023,
-    description: "Trained in web development at Fairway Technology.",
-  },
-  {
-    year: "2025–Present",
-    description: "Working as a freelancer.",
-  },
-];
-
-const socialLinks = [
-  {
-    href: "https://github.com/kaungmyatkyawtiti",
-    icon: <RiGithubFill size={20} />,
-    label: "@kaungmyatkyawtiti",
-  },
-  {
-    href: "https://twitter.com/inkdrop_app",
-    icon: <RiFacebookBoxFill size={20} />,
-    label: "@NottNott",
-  },
-  {
-    href: "https://x.com",
-    icon: <RiTwitterXFill size={20} />,
-    label: "@kmktitit2003@gmail.com",
-  },
-  {
-    href: "https://instagram.com",
-    icon: <RiInstagramFill size={20} />,
-    label: "@nottnott2003",
-  },
-];
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className="mx-auto max-w-3xl px-4 py-10">
+    <main title="Home" className="page-container space-y-10">
       {/* Intro */}
-      <div className="mb-6 rounded-lg bg-white/45 p-3 text-center backdrop-blur-md dark:bg-white/10">
+      <div className="rounded-lg bg-white/45 p-3 text-center backdrop-blur-md dark:bg-white/10">
         Hello, I&apos;m an indie app developer based in Myanmar!
       </div>
 
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-start gap-5">
+      <section className="flex flex-col md:flex-row md:items-start gap-5">
         <div className="flex-1">
           <h1 className="text-4xl font-bold font-mplus">Kaung Myat Kyaw</h1>
           <p className="mt-1">
@@ -79,11 +36,12 @@ export default function Home() {
             loading="eager"
           />
         </div>
-      </div>
+      </section>
 
       {/* About */}
-      <section className="mt-8">
+      <section>
         <SubTitle>About</SubTitle>
+
         <p className="para">
           Hi, I’m Kaung Myat Kyaw, a junior full-stack developer focused on JavaScript and TypeScript.
           I primarily work with Next.js and Express.js, building practical web applications with clean, maintainable code.
@@ -91,24 +49,24 @@ export default function Home() {
           I’m especially interested in modern frontend patterns, APIs, and creating user-friendly experiences that scale as I grow as a developer.
         </p>
 
-        <div className="mt-6 text-center">
-          <Link
-            href="/works"
-            className="btn-primary"
-          >
+        <Link
+          href="/works"
+          className="mt-6 flex-center"
+        >
+          <InteractiveBtn>
             My portfolio
             <RiArrowRightLine size={20} />
-          </Link>
-        </div>
+          </InteractiveBtn>
+        </Link>
       </section>
 
       {/* Bio */}
-      <section className="mt-8">
+      <section>
         <SubTitle>Bio</SubTitle>
 
         <ul className="space-y-2">
           {
-            bioTimelines.map(bt => (
+            BIO_TIMELINES.map(bt => (
               <li
                 key={`${bt.year}-${bt.description}`}
                 className="flex gap-4"
@@ -122,74 +80,64 @@ export default function Home() {
       </section>
 
       {/* I Love */}
-      <section className="mt-8">
+      <section>
         <SubTitle>I ♥</SubTitle>
+
         <p className="para">
           Art and drawing, sketching,{" "}
           <span className="text-secondary">
             watching TV shows and movies,
           </span>
-          {" "} and experimenting with new creative concepts.
+          {" "} programming and experimenting with new creative concepts.
         </p>
       </section>
 
       {/* Social */}
-      <section className="mt-8">
+      <section>
         <SubTitle>On Social</SubTitle>
 
         <ul className="space-y-1">
-          {socialLinks.map((social) => (
+          {SOCIAL_LINKS.map((social) => (
             <li key={social.href}>
-              <SocialLink
-                href={social.href}
-                icon={social.icon}
-                label={social.label}
-              />
+              <SocialLinkItem social={social} />
             </li>
           ))}
         </ul>
       </section>
 
       {/* Newsletter */}
-      <section className="mt-8">
+      <section>
         <SubTitle>Newsletter</SubTitle>
+
         <p className="para">
           Learning, experimenting, and building—follow my coding journey as a junior developer.
           Whether you have a question or just want to message me, my inbox is always open!
         </p>
 
-        <div className="mt-6 text-center">
-          <Link
-            href="/contact"
-            className="btn-primary"
-          >
+        <Link
+          href="/contact"
+          className="flex-center mt-6"
+        >
+          <InteractiveBtn>
             <RiMailLine size={20} />
-            Join my newsletter here
-          </Link>
-        </div>
+            Newsletter Here
+          </InteractiveBtn>
+        </Link>
       </section>
     </main>
   )
 }
 
-/* Helper */
-function SocialLink({
-  href,
-  icon,
-  label,
-}: {
-  href: string
-  icon: React.ReactNode
-  label: string
-}) {
+/* Social Item */
+function SocialLinkItem({ social }: { social: SocialLink }) {
   return (
     <Link
-      href={href}
+      href={social.href}
       target="_blank"
       className="inline-flex items-center gap-2 rounded-md p-2 text-primary hover:bg-accent"
     >
-      {icon}
-      <span className="font-semibold">{label}</span>
+      <social.icon size={20} />
+      <span className="font-semibold">{social.label}</span>
     </Link>
   )
 }

@@ -1,12 +1,13 @@
 'use client'
 
 import { useDismiss } from '@/hooks/useDismiss';
+import { motion } from 'motion/react';
 import Image from 'next/image'
 import { useRef } from 'react'
 
 interface ImageModalProps {
   src: string;
-  alt?: string;
+  alt: string;
   onClose: () => void;
 }
 
@@ -20,22 +21,31 @@ export const ImageModal = ({
   useDismiss(containerRef, onClose);
 
   return (
-    <div
-      className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+    <motion.div
+      key="backdrop"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+      className="fixed inset-0 z-150 bg-black/80 flex items-center justify-center"
     >
-      <div
+      <motion.div
         ref={containerRef}
-        className="relative max-h-[90vh] max-w-[90vw] "
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.8, opacity: 0 }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
+        className="relative w-[80vw] aspect-video md:aspect-square max-h-[80vh] rounded-lg overflow-hidden py-20"
       >
         <Image
           src={src}
-          alt={alt ?? 'Artwork'}
-          width={1200}
-          height={1200}
-          className="h-auto w-auto rounded-lg"
-          priority
+          alt={alt}
+          fill
+          sizes="(min-width: 768px) 50vw, 100vw"
+          loading='eager'
+          className="object-cover rounded-lg"
         />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }

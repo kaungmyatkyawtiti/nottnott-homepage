@@ -12,7 +12,7 @@ export function SubTitle({
 }: SubTitleProps) {
   return (
     <h2
-      className={cn("relative mb-4 inline-block text-xl font-semibold font-mplus", className)}
+      className={cn("subtitle", className)}
     >
       {children}
       <span className="absolute left-0 -bottom-1 h-1 w-full bg-secondary" />

@@ -24,14 +24,19 @@ export const Title = ({ children }: { children: ReactNode }) => (
 interface WorkImageProps {
   src: string;
   alt: string;
+  onClick: () => void
 }
 
 export const WorkImage = ({
   src,
-  alt
+  alt,
+  onClick,
 }: WorkImageProps) => {
   return (
-    <div className="relative mb-4 w-full overflow-hidden">
+    <div
+      className="mb-4 w-full overflow-hidden"
+      onClick={onClick}
+    >
       <Image
         src={src}
         alt={alt}
@@ -45,9 +50,7 @@ export const WorkImage = ({
 };
 
 export const Meta = ({ children }: { children: ReactNode }) => (
-  <span
-    className="uppercase mr-2 rounded-sm bg-green-200 text-black/80 px-1 py-0.5 text-xs font-semibold dark:text-green-200 dark:bg-green-200/15"
-  >
+  <span className="uppercase mr-2 rounded-sm bg-green-200 text-black/80 px-1 py-0.5 text-xs font-semibold dark:text-green-200 dark:bg-green-200/15">
     {children}
   </span>
 )

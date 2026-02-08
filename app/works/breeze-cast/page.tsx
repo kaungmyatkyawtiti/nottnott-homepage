@@ -1,10 +1,32 @@
+"use client";
+
+import { ImageModal } from "@/components/ImageModal";
 import { Badge, Meta, Title, WorkImage } from "@/components/ui/work";
+import { useImageModal } from "@/hooks/useImageModal";
 import { RiExternalLinkLine } from "@remixicon/react";
+import { AnimatePresence } from "motion/react";
 import Link from "next/link"
 
-export default function page() {
+const IMAGES = [
+  {
+    src: "/images/works/weather.png",
+    alt: "Weather Dashboard",
+  },
+  {
+    src: "/images/works/weather2.png",
+    alt: "Weather Dashboard 2",
+  },
+];
+
+export default function BreezeCastPage() {
+  const { activeImage, openImageModal, closeImageModal } = useImageModal()
+
+  const handleOpenModal = (img: { src: string, alt: string }) => () => {
+    openImageModal(img);
+  };
+
   return (
-    <div className="space-y-4 my-4">
+    <main className="page-container space-y-4 relative">
       <Title>
         Breeze Cast <Badge>2024</Badge>
       </Title>
@@ -69,8 +91,24 @@ export default function page() {
         </li>
       </ul>
 
-      <WorkImage src="/images/works/weather.png" alt="Weather" />
-      <WorkImage src="/images/works/weather2.png" alt="Weather" />
-    </div>
+      {IMAGES.map((img, i) => (
+        <WorkImage
+          key={i}
+          src={img.src}
+          alt={img.alt}
+          onClick={handleOpenModal(img)}
+        />
+      ))}
+
+      <AnimatePresence initial={false}>
+        {activeImage && (
+          <ImageModal
+            src={activeImage.src}
+            alt={activeImage.alt}
+            onClose={closeImageModal}
+          />
+        )}
+      </AnimatePresence>
+    </main>
   )
 }
