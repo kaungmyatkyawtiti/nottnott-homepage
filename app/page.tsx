@@ -8,14 +8,20 @@ import { SubTitle } from "@/components/ui/text"
 import InteractiveBtn from "@/components/animations/InteractiveBtn";
 import { BIO_TIMELINES, SOCIAL_LINKS } from "@/constants";
 import { SocialLink } from "@/types";
+import SlideText from "@/components/animations/SlideText";
+import RotatingBorder from "@/components/animations/RotatingBorder";
 
 export default function HomePage() {
   return (
     <main title="Home" className="page-container space-y-10">
       {/* Intro */}
-      <div className="rounded-lg bg-white/45 p-3 text-center backdrop-blur-md dark:bg-white/10">
-        Hello, I&apos;m an indie app developer based in Myanmar!
-      </div>
+      <RotatingBorder className="p-px rounded-md">
+        <div className="h-10 w-full flex items-center justify-center bg-white/45 dark:bg-white/10 rounded-md">
+          <SlideText className="absolute top-2 left-10 whitespace-nowrap text-base">
+            {`Hello, I'm an indie app developer based in Myanmar!`}
+          </SlideText>
+        </div>
+      </RotatingBorder>
 
       {/* Header */}
       <section className="flex flex-col md:flex-row md:items-start gap-5">
@@ -26,15 +32,17 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="flex justify-center">
-          <Image
-            src="/images/nott-nott.jpg"
-            alt="Profile image"
-            width={100}
-            height={100}
-            className="overflow-hidden rounded-full border border-stone-400"
-            loading="eager"
-          />
+        <div className="flex-center">
+          <RotatingBorder className="rounded-full p-px">
+            <Image
+              src="/images/nott-nott.jpg"
+              alt="Profile image"
+              width={100}
+              height={100}
+              className="overflow-hidden rounded-full"
+              loading="eager"
+            />
+          </RotatingBorder>
         </div>
       </section>
 

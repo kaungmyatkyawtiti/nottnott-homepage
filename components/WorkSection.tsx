@@ -9,6 +9,7 @@ import { SubTitle } from "./ui/text";
 
 export default function WorkSection() {
   const [selectedTab, setSelectedTab] = useState("all")
+
   const countByTypes = WORKS.reduce((acc: Record<string, number>, work) => {
     acc[work.type] = (acc[work.type] ?? 0) + 1;
     return acc;
@@ -34,32 +35,21 @@ export default function WorkSection() {
   const filteredWorks = WORKS.filter(work => selectedTab === "all" || selectedTab === work.type);
 
   return (
-    <div>
-      <ul className="sticky top-(--header-height) z-90 flex border-b overflow-x-auto whitespace-nowrap bg-background/90 backdrop-blur-lg">
-        {WORK_TABS.map((item, i) => (
-          <motion.li
-            key={i}
-            initial={false}
-            animate={{
-              backgroundColor: item === selectedTab ? "var(--brand-foreground-glass)" : "rgba(0,0,0,0)"
-            }}
-            onClick={() => setSelectedTab(item)}
+    <div className="space-y-10">
+      <div className="flex flex-wrap gap-2.5">
+        {WORK_TABS.map(tab => (
+          <button
+            key={tab}
             className={cn(
-              'px-4.5 py-2.5 relative cursor-pointer text-foreground/85 hover:text-foreground text-[15px] capitalize',
-              item === selectedTab && "text-foreground"
+              "px-4 py-1 rounded-full text-sm border border-border/80 hover:opacity-85 hover:scale-105 hover-effect",
+              selectedTab === tab ? "bg-indigo-300 dark:bg-secondary" : "bg-stone-100 dark:bg-stone-600"
             )}
+            onClick={() => setSelectedTab(tab)}
           >
-            {item} [{item === "all" ? totalCount : countByTypes[item] ?? 0}]
-            {item === selectedTab && (
-              <motion.div
-                layoutId="underline"
-                id="underline"
-                className="absolute bottom-0 left-0 right-0 h-1 bg-brand-foreground"
-              />
-            )}
-          </motion.li>
+            {tab} ({tab === "all" ? totalCount : countByTypes[tab] ?? 0})
+          </button>
         ))}
-      </ul>
+      </div>
 
       <AnimatePresence mode="wait">
         <motion.div

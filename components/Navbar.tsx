@@ -13,41 +13,18 @@ import { useDismiss } from "@/hooks/useDismiss";
 import { NAV_LINKS } from "@/constants";
 import ModeToggle from "./ModeToggle";
 import { AnimatePresence, motion } from "motion/react";
-import { Cursor, Position, Tab } from "./animations/SlideTab";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
-  const [position, setPosition] = useState<Position>({
-    left: 0,
-    width: 0,
-    opacity: 0,
-  });
-
-  const [activeTabRef, setActiveTabRef] = useState<HTMLLIElement | null>(null);
 
   const handleClose = () => setIsOpen(false);
 
   useDismiss(containerRef, handleClose);
-
   return (
     <>
-      <ul
-        onMouseLeave={() => {
-          if (activeTabRef) {
-            const { offsetLeft, offsetWidth } = activeTabRef;
-            setPosition({
-              left: offsetLeft,
-              width: offsetWidth,
-              opacity: 1,
-            });
-          } else {
-            setPosition((prev) => ({ ...prev, opacity: 0 }));
-          }
-        }}
-        className="hidden md:flex items-center gap-2.5 relative"
-      >
+      <ul className="hidden md:flex items-center gap-2.5">
         {NAV_LINKS.map(link => {
           const isActive =
             pathname === link.href ||
@@ -55,19 +32,17 @@ export default function Navbar() {
 
           return (
             <Link key={link.href} href={link.href}>
-              <Tab
-                setPosition={setPosition}
-                isActive={isActive}
-                setActiveTabRef={setActiveTabRef}
+              <li
+                className={cn(
+                  "relative hover:underline p-1.5 px-2.5 focus:outline-none text-[15px] rounded-md",
+                  isActive && "bg-brand-foreground"
+                )}
               >
                 {link.name}
-              </Tab>
+              </li>
             </Link>
           )
         })}
-
-        <Cursor position={position} />
-
         <Link
           href="https://github.com/kaungmyatkyawtiti?tab=repositories"
           target="_blank"
@@ -110,28 +85,27 @@ export default function Navbar() {
               transition={{ duration: 0.2, ease: "easeOut" }}
               className="absolute md:hidden right-0 top-12 z-50 w-50 rounded-md border bg-stone-100 dark:bg-stone-700 shadow-md"
             >
-              <ul className="py-1 font-medium">
-                {NAV_LINKS.map(link => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={handleClose}
-                  >
-                    <li className="block px-4 py-2 hover:bg-input hover:underline text-[15px]">
-                      {link.name}
-                    </li>
-                  </Link>
-                ))}
-                <li className="border-t my-1" />
+              {NAV_LINKS.map(link => (
                 <Link
-                  href="https://github.com"
-                  target="_blank"
+                  key={link.href}
+                  href={link.href}
+                  onClick={handleClose}
+                  className="font-medium"
                 >
-                  <li className="block px-4 py-2 hover:bg-input hover:underline text-[15px]">
-                    View Source
-                  </li>
+                  <span className="block px-4 py-2 hover:bg-input hover:underline text-[15px]">
+                    {link.name}
+                  </span>
                 </Link>
-              </ul>
+              ))}
+              <div className="border-t" />
+              <Link
+                href="https://github.com"
+                target="_blank"
+              >
+                <div className="px-4 py-2 hover:bg-input hover:underline text-[15px]">
+                  View Source
+                </div>
+              </Link>
             </motion.div>
           )}
         </AnimatePresence>

@@ -43,7 +43,7 @@ const Header = () => {
         opacity: hidden ? 0 : 1,
       }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed w-full backdrop-blur-lg z-100 bg-background/90 top-0"
+      className="sticky w-full backdrop-blur-lg z-100 bg-background/90 top-0"
     >
       <nav className="max-w-3xl mx-auto flex items-center justify-between px-4 py-2">
         <Logo />

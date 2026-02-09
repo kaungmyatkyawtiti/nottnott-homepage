@@ -78,18 +78,11 @@ export default function ContactForm() {
       className="space-y-7"
     >
       <div className="contact-group">
-        <label className={cn(
-          "form-label",
-          errors.name && "text-destructive"
-        )}>
-          <RiUser3Line size={18} />
-          Name
-        </label>
         <input
           {...register("name")}
-          placeholder="Your name*"
+          placeholder="Name..."
           className={cn(
-            "form-input",
+            "contact-input",
             errors.name && "error"
           )}
         />
@@ -101,18 +94,11 @@ export default function ContactForm() {
       </div>
 
       <div className="contact-group">
-        <label className={cn(
-          "form-label",
-          errors.email && "text-destructive"
-        )}>
-          <RiMailLine size={18} />
-          Email
-        </label>
         <input
           {...register("email")}
-          placeholder="johndoe@example.com"
+          placeholder="Phone number..."
           className={cn(
-            "form-input",
+            "contact-input",
             errors.email && "error"
           )}
         />
@@ -124,19 +110,11 @@ export default function ContactForm() {
       </div>
 
       <div className="contact-group">
-        <label className={cn(
-          "form-label",
-          errors.letter && "text-destructive"
-        )}>
-          <RiMessageLine size={18} />
-          Message
-        </label>
         <textarea
           {...register("letter")}
-          rows={5}
-          placeholder="Your message*"
+          placeholder="Your message..."
           className={cn(
-            "form-input resize-none mb-0",
+            "contact-input resize-none",
             errors.letter && "error"
           )}
         />
@@ -150,6 +128,7 @@ export default function ContactForm() {
       <InteractiveBtn
         type="submit"
         form="contact-form"
+        className="mt-10"
       >
         Send message
         <RiSendPlane2Fill size={20} />
@@ -175,7 +154,7 @@ function ErrorTooltip({
       {error && (
         <motion.span
           key={shakeTrigger}
-          className="error-tooltip"
+          className="error-tooltip scroll-smooth scrollbar-hidden"
           initial={{ opacity: 0, y: -4 }}
           animate={{
             opacity: 1,

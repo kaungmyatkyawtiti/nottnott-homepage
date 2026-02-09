@@ -50,6 +50,11 @@
 
   --color-brand-foreground: var(--brand-foreground);
   --color-brand-foreground-glass: var(--brand-foreground-glass);
+
+  --color-gradient-1: var(--gradient-1);
+  --color-gradient-2: var(--gradient-2);
+  --color-gradient-3: var(--gradient-3);
+  --color-gradient-4: var(--gradient-4);
 }
 
 :root {
@@ -75,6 +80,11 @@
 
   --brand-foreground: oklch(0.8137 0.0997 234.24);
   --brand-foreground-glass: oklch(0.8137 0.0997 234.24 / 0.2);
+
+  --gradient-1: oklch(0.78 0.12 185);
+  --gradient-2: oklch(0.76 0.14 260);
+  --gradient-3: oklch(0.85 0.14 85);
+  --gradient-4: oklch(0.78 0.12 185);
 }
 
 .dark {
@@ -100,11 +110,17 @@
 
   --brand-foreground: oklch(0.6706 0.1599 47.15);
   --brand-foreground-glass: oklch(0.6706 0.1599 47.15 / 0.2);
+
+  --gradient-1: oklch(0.72 0.10 200);
+  --gradient-2: oklch(0.70 0.11 270);
+  --gradient-3: oklch(0.78 0.12 75);
+  --gradient-4: oklch(0.72 0.10 200);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    scrollbar-width: thin;
   }
 
   body {
@@ -128,6 +144,15 @@
     -webkit-text-fill-color: var(--foreground);
     transition: background-color 9999s ease-in-out 0s;
   }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 @utility flex-center {
@@ -143,7 +168,7 @@
 }
 
 @utility page-container {
-  @apply py-10 md:py-16;
+  @apply py-10 md:py-16 px-4;
 }
 
 @utility hover-effect {
@@ -170,26 +195,26 @@
   @apply flex items-center gap-2 font-medium mb-1 text-foreground/80 text-sm md:text-base;
 }
 
-@utility form-input {
-  @apply w-full rounded-sm border px-3 py-2 text-sm md:text-base;
+@utility contact-group {
+  @apply w-full flex flex-col text-sm lg:text-base relative;
+}
+
+@utility contact-input {
+  @apply bg-transparent border-b border-border py-3 text-foreground placeholder:text-foreground/80;
 
   &:focus {
-    @apply outline-none ring-2 ring-indigo-500 dark:ring-primary border-border/30;
+    @apply outline-none border-indigo-500 dark:border-primary;
   }
 
   &.error {
-    @apply border-destructive;
+    @apply border-destructive/80 text-destructive placeholder:text-destructive/80;
+  }
 
-    &:focus {
-      @apply outline-none ring-2 ring-destructive border-border/30;
-    }
+  &.error:focus {
+    @apply border-destructive placeholder:text-destructive;
   }
 }
 
-@utility contact-group {
-  @apply relative space-y-1.5;
-}
-
 @utility error-tooltip {
-  @apply absolute right-0 top-full mt-0.5 px-3 py-1 rounded-md bg-destructive text-white text-xs shadow-lg z-50 whitespace-nowrap overflow-x-auto;
+  @apply absolute right-0 top-full mt-1.5 px-3 py-1 rounded-md bg-destructive text-white text-xs shadow-lg z-50 whitespace-nowrap overflow-x-auto;
 }

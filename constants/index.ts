@@ -190,5 +190,4 @@ export const WORK_TABS = [
   "video",
   "vr",
   "tool",
-  "others"
 ] as const;
