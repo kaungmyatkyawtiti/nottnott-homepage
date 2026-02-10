@@ -34,7 +34,7 @@ export default function Navbar() {
             <Link key={link.href} href={link.href}>
               <li
                 className={cn(
-                  "relative hover:underline p-1.5 px-2.5 focus:outline-none text-[15px] rounded-md",
+                  "relative hover:underline p-1.5 px-2.5 text-[15px] rounded-md",
                   isActive && "bg-brand-foreground"
                 )}
               >
