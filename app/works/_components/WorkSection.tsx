@@ -1,11 +1,11 @@
 "use client";
 
+import { WorkGridItem } from "@/components/GridItem";
+import { SubTitle } from "@/components/ui/text";
 import { WORK_TABS, WORKS } from "@/constants";
 import cn from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import { WorkGridItem } from "./GridItem";
-import { SubTitle } from "./ui/text";
 
 export default function WorkSection() {
   const [selectedTab, setSelectedTab] = useState("all")

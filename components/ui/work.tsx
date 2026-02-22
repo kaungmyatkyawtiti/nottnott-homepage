@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { RiArrowRightSLine } from "@remixicon/react";
 import { ReactNode } from "react"
 import Image from "next/image";
+import { useBoundStore } from "@/lib/useBoundStore";
 
 export const Title = ({ children }: { children: ReactNode }) => (
   <div className="flex items-center gap-1">
@@ -22,24 +25,24 @@ export const Title = ({ children }: { children: ReactNode }) => (
 )
 
 interface WorkImageProps {
-  src: string;
-  alt: string;
-  onClick: () => void
+  image: string;
+  title: string;
 }
 
 export const WorkImage = ({
-  src,
-  alt,
-  onClick,
+  image,
+  title,
 }: WorkImageProps) => {
+  const { openModal } = useBoundStore();
+
   return (
     <div
       className="mb-4 w-full overflow-hidden"
-      onClick={onClick}
+      onClick={() => openModal(image, title)}
     >
       <Image
-        src={src}
-        alt={alt}
+        src={image}
+        alt={title}
         width={800}
         height={800}
         loading="eager"

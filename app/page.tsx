@@ -16,7 +16,7 @@ export default function HomePage() {
     <main title="Home" className="page-container space-y-10">
       {/* Intro */}
       <RotatingBorder className="p-px rounded-md">
-        <div className="h-10 w-full flex items-center justify-center bg-white/45 dark:bg-white/10 rounded-md">
+        <div className="h-10 w-full flex items-center justify-center bg-card rounded-md">
           <SlideText className="absolute top-2 left-10 whitespace-nowrap text-base">
             {`Hello, I'm an indie app developer based in Myanmar!`}
           </SlideText>

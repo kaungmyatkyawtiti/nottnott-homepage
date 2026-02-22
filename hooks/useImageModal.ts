@@ -1,6 +1,6 @@
 import { useReducer } from "react"
 
-export type ModalImage = { src: string; alt: string }
+export type ModalImage = { image: string; title: string }
 
 type ModalState = ModalImage | null;
 
@@ -8,7 +8,10 @@ type ModalAction =
   | { type: "OPEN"; payload: ModalImage }
   | { type: "CLOSE" }
 
-function modalReducer(state: ModalState, action: ModalAction): ModalState {
+function modalReducer(
+  state: ModalState,
+  action: ModalAction
+): ModalState {
   switch (action.type) {
     case "OPEN":
       return action.payload;
@@ -23,6 +26,7 @@ export function useImageModal() {
   const [state, dispatch] = useReducer(modalReducer, null)
 
   const open = (image: ModalImage) => dispatch({ type: "OPEN", payload: image })
+
   const close = () => dispatch({ type: "CLOSE" })
 
   return {

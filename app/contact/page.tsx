@@ -1,7 +1,12 @@
-import ContactForm from "@/components/ContactForm";
 import { SubTitle } from "@/components/ui/text";
-import { RiMailLine, RiMapPinLine, RiPhoneLine } from "@remixicon/react";
-import Link from "next/link";
+import { CONTACT_INFOS } from "@/constants";
+import { ContactInfo } from "@/types";
+import ContactForm from "./_components/ContactForm";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact",
+};
 
 export default function ContactPage() {
   return (
@@ -21,30 +26,39 @@ export default function ContactPage() {
           Other ways to Contact me
         </h3>
 
-        <div className="space-y-3 text-sm">
-          <div className="flex items-center gap-2.5">
-            <RiPhoneLine size={20} className="opacity-70" />
-            <span className="hover:underline">09 787 484 437</span>
-            <span className="font-[550]">OR</span>
-            <span className="hover:underline">09 685 470 077</span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <RiMapPinLine size={20} className="opacity-70" />
-            <span>Insein, Yangon, Myanmar</span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <RiMailLine size={20} className="opacity-70" />
-            <Link
-              href="mailto:your@email.com"
-              className="hover:underline"
-            >
-              kmktiti2003@gmail.com
-            </Link>
-          </div>
+        <div className="space-y-5">
+          {
+            CONTACT_INFOS.map((info, ind) =>
+              <ContactItem
+                key={ind}
+                info={info}
+              />
+            )
+          }
         </div>
       </section>
     </main>
   )
 }
+
+interface ContactItemProps {
+  info: ContactInfo;
+}
+
+const ContactItem = ({ info }: ContactItemProps) => (
+  <div className="flex items-center gap-4">
+    <div className="bg-black/10 dark:bg-white/15 p-3 rounded-sm text-primary">
+      <info.icon size={22} />
+    </div>
+
+    <div className="flex flex-col gap-0.5">
+      <span className="font-semibold font-mplus">
+        {info.label}
+      </span>
+      <span className="text-foreground/90 font-medium hover:text-secondary hover:underline">
+        {info.value}
+      </span>
+    </div>
+  </div>
+);
+

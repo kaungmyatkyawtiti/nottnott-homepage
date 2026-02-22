@@ -1,30 +1,15 @@
-"use client";
-
-import { ImageModal } from "@/components/ImageModal";
+import ProjectImageGallery from "@/components/ProjectImageGallery";
 import { Badge, Meta, Title, WorkImage } from "@/components/ui/work";
-import { useImageModal } from "@/hooks/useImageModal";
+import { SIMPLE_BLOG_GALLERYS } from "@/constants";
 import { RiExternalLinkLine } from "@remixicon/react";
-import { AnimatePresence } from "motion/react";
+import { Metadata } from "next";
 import Link from "next/link"
 
-const IMAGES = [
-  {
-    src: "/images/works/blog.png",
-    alt: "Blog",
-  },
-  {
-    src: "/images/works/blog2.png",
-    alt: "Blog 2",
-  },
-];
+export const metadata: Metadata = {
+  title: "Simple Blog",
+};
 
 export default function SimpleBlogPage() {
-  const { activeImage, openImageModal, closeImageModal } = useImageModal()
-
-  const handleOpenModal = (img: { src: string, alt: string }) => () => {
-    openImageModal(img);
-  };
-
   return (
     <main className="space-y-4 page-container relative">
       <Title>
@@ -68,27 +53,10 @@ export default function SimpleBlogPage() {
           <Meta>Inspiration</Meta>
           <span>Ei Maung Rockstar Developer Book 2025</span>
         </li>
-
       </ul>
 
-      {IMAGES.map((img, i) => (
-        <WorkImage
-          key={i}
-          src={img.src}
-          alt={img.alt}
-          onClick={handleOpenModal(img)}
-        />
-      ))}
+      <ProjectImageGallery gallerys={SIMPLE_BLOG_GALLERYS} />
 
-      <AnimatePresence initial={false}>
-        {activeImage && (
-          <ImageModal
-            src={activeImage.src}
-            alt={activeImage.alt}
-            onClose={closeImageModal}
-          />
-        )}
-      </AnimatePresence>
     </main>
   )
 }

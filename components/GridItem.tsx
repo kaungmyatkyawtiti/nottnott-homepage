@@ -1,20 +1,23 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Art, Work } from "@/types";
+import { useBoundStore } from "@/lib/useBoundStore";
 
 interface ArtGridItemProps {
   art: Art;
-  onClick: () => void
 }
 
 export function ArtGridItem({
   art,
-  onClick,
 }: ArtGridItemProps) {
+  const { openModal } = useBoundStore();
+
   return (
     <div
       className="w-full text-center cursor-pointer group"
-      onClick={onClick}
+      onClick={() => openModal(art.thumbnail, art.title)}
     >
       <Image
         src={art.thumbnail}

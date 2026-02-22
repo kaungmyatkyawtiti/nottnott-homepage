@@ -16,8 +16,8 @@ export default function FloatingUFO() {
         {/* Beam */}
         <motion.path
           d="M40 40 L30 80 L70 80 L60 40"
-          fill="rgba(79,70,229,0.3)"
-          animate={{ opacity: [0.2, 0.6, 0.2], scaleY: [0.8, 1.1, 0.8] }}
+          fill="rgba(79,70,229,0.6)"
+          animate={{ opacity: [0.3, 0.6, 0.3], scaleY: [0.8, 1.1, 0.8] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
       </svg>

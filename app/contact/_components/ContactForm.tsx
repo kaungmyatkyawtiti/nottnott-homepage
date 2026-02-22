@@ -1,65 +1,52 @@
 "use client"
 
-import { sendEmail } from "@/lib/actions/email";
+import InteractiveBtn from "@/components/animations/InteractiveBtn";
+import { sendEmailAction } from "@/lib/actions/email-send-action";
 import cn from "@/lib/utils";
+import { contactSchema } from "@/lib/validations";
+import { ContactFormInputs } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  RiUser3Line,
-  RiMailLine,
+  RiLoader2Fill,
   RiSendPlane2Fill,
-  RiMessageLine,
 } from "@remixicon/react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import z from "zod";
-import InteractiveBtn from "./animations/InteractiveBtn";
-
-const contactSchema = z.object({
-  name: z
-    .string()
-    .min(5, "Please enter your full name (minimum 5 characters)")
-    .max(100, "Your name is super long"),
-
-  email: z
-    .email("Please enter valid email address"),
-
-  letter: z
-    .string()
-    .min(5, "Please enter your message (minimum 5 characters)")
-    .max(100, "A lot of text! Can you keep it under 100 characters"),
-})
-
-export type ContactFormInputs = z.infer<typeof contactSchema>;
-
-const defaultValues = {
-  name: '',
-  email: '',
-  letter: '',
-}
 
 export default function ContactForm() {
   const [shakeTrigger, setShakeTrigger] = useState(0);
+
+  const defaultValues = {
+    name: '',
+    email: '',
+    letter: '',
+  }
 
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<ContactFormInputs>({
     resolver: zodResolver(contactSchema),
     defaultValues,
   })
 
   const onSubmit: SubmitHandler<ContactFormInputs> = async (data) => {
+    console.log("Send email submit data", data);
+
     try {
-      const result = await sendEmail(data);
-      console.log('Contact submit result', result);
+      const result = await sendEmailAction(data);
+      console.log('Send email result', result);
       toast.success("Message sent successfully!");
-    } catch (error) {
-      console.log("Contact submit error", error)
-      toast.error("Something went wrong");
+    } catch (err) {
+      console.log("Send email error", err)
+      const errMsg = err instanceof Error
+        ? err.message
+        : "Something went wrong";
+      toast.error(errMsg);
     } finally {
       reset(
         defaultValues,
@@ -80,7 +67,7 @@ export default function ContactForm() {
       <div className="contact-group">
         <input
           {...register("name")}
-          placeholder="Name..."
+          placeholder="your name"
           className={cn(
             "contact-input",
             errors.name && "error"
@@ -96,7 +83,7 @@ export default function ContactForm() {
       <div className="contact-group">
         <input
           {...register("email")}
-          placeholder="Phone number..."
+          placeholder="your@email.com"
           className={cn(
             "contact-input",
             errors.email && "error"
@@ -112,7 +99,7 @@ export default function ContactForm() {
       <div className="contact-group">
         <textarea
           {...register("letter")}
-          placeholder="Your message..."
+          placeholder="send something"
           className={cn(
             "contact-input resize-none",
             errors.letter && "error"
@@ -129,7 +116,11 @@ export default function ContactForm() {
         type="submit"
         form="contact-form"
         className="mt-10"
+        disabled={isSubmitting}
       >
+        {isSubmitting
+          && <RiLoader2Fill className="animate-spin" />
+        }
         Send message
         <RiSendPlane2Fill size={20} />
       </InteractiveBtn>

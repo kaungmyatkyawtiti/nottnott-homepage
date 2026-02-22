@@ -1,9 +1,12 @@
-import { Art, Work } from "@/types";
+import { Art, ContactInfo, ProjectGallery, Work } from "@/types";
 import {
   RiGithubFill,
   RiTwitterXFill,
   RiInstagramFill,
   RiFacebookBoxFill,
+  RiMailLine,
+  RiPhoneLine,
+  RiMapPinLine,
 } from "@remixicon/react"
 
 export const NAV_LINKS = [
@@ -24,6 +27,24 @@ export const NAV_LINKS = [
     href: "/digital-arts"
   },
 ]
+
+export const CONTACT_INFOS: ContactInfo[] = [
+  {
+    icon: RiMailLine,
+    label: "Email",
+    value: "eucalyptustiti2003@gmail.com",
+  },
+  {
+    icon: RiPhoneLine,
+    label: "Phone",
+    value: "09 787 484 437",
+  },
+  {
+    icon: RiMapPinLine,
+    label: "Location",
+    value: "Yangon, Myanmar",
+  },
+];
 
 export const BIO_TIMELINES = [
   {
@@ -191,3 +212,26 @@ export const WORK_TABS = [
   "vr",
   "tool",
 ] as const;
+
+export const BREEZE_CAST_GALLERYS: ProjectGallery[] = [
+  {
+    image: "/images/works/weather.png",
+    title: "Weather Dashboard",
+  },
+  {
+    image: "/images/works/weather2.png",
+    title: "Weather Dashboard 2",
+  },
+];
+
+export const SIMPLE_BLOG_GALLERYS: ProjectGallery[] = [
+  {
+    image: "/images/works/blog.png",
+    title: "Blog",
+  },
+  {
+    image: "/images/works/blog2.png",
+    title: "Blog 2",
+  },
+];
+
