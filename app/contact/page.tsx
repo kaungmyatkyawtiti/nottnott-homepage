@@ -2,7 +2,7 @@ import { SubTitle } from "@/components/ui/text";
 import { CONTACT_INFOS } from "@/constants";
 import { ContactInfo } from "@/types";
 import { Metadata } from "next";
-import ContactForm from "./_components/ContactForm2";
+import ContactForm from "./_components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact",

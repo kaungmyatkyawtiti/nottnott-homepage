@@ -10,13 +10,20 @@ import {
 } from "@remixicon/react";
 import { useForm } from "@tanstack/react-form";
 import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
 import { toast } from "sonner";
 
 export default function ContactForm() {
+  const [shakeTrigger, setShakeTrigger] = useState(0);
+
   const defaultValues = {
     name: '',
     email: '',
     letter: '',
+  }
+
+  const handleShake = () => {
+    setShakeTrigger(prev => prev + 1);
   }
 
   const form = useForm({
@@ -49,7 +56,8 @@ export default function ContactForm() {
       onSubmit={(e) => {
         e.preventDefault()
         e.stopPropagation()
-        form.handleSubmit()
+        form.handleSubmit(),
+          handleShake
       }}
     >
       <form.Field
@@ -113,7 +121,7 @@ export default function ContactForm() {
 
               <ErrorTooltip
                 error={isInvalid ? error : undefined}
-                shakeTrigger={error ? error.length : 0}
+                shakeTrigger={shakeTrigger}
               />
 
             </div>

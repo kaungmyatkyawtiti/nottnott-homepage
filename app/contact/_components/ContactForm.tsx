@@ -28,12 +28,15 @@ export default function ContactForm() {
     register,
     handleSubmit,
     reset,
-    clearErrors,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormInputs>({
     resolver: zodResolver(contactSchema),
     defaultValues,
+    mode: "onSubmit",
+    reValidateMode: "onBlur"
   })
+
+  const handleShake = () => setShakeTrigger(prev => prev + 1);
 
   const onSubmit: SubmitHandler<ContactFormInputs> = async (data) => {
     console.log("Send email submit data", data);
@@ -42,15 +45,13 @@ export default function ContactForm() {
       const result = await sendEmailAction(data);
       console.log('Send email result', result);
       toast.success("Message sent successfully!");
+      reset(defaultValues);
     } catch (err) {
       console.log("Send email error", err)
       const errMsg = err instanceof Error
         ? err.message
         : "Something went wrong";
       toast.error(errMsg);
-    } finally {
-      reset(defaultValues);
-      clearErrors();
     }
   }
 
@@ -59,7 +60,7 @@ export default function ContactForm() {
       id="contact-form"
       onSubmit={handleSubmit(
         onSubmit,
-        () => { setShakeTrigger((prev) => prev + 1) }
+        handleShake,
       )}
       className="space-y-7"
     >
@@ -146,11 +147,11 @@ function ErrorTooltip({
           key={shakeTrigger}
           className="error-tooltip scroll-smooth scrollbar-hidden"
           initial={{ opacity: 0, y: -4 }}
+          exit={{ opacity: 0, y: 4 }}
           animate={{
             opacity: 1,
             x: [0, -4, 4, -3, 3, -2, 2, 0],
           }}
-          exit={{ opacity: 0 }}
           transition={{
             duration: 0.35,
             ease: "easeInOut",
