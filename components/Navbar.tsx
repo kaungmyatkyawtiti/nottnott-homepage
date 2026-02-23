@@ -85,26 +85,26 @@ export default function Navbar() {
               transition={{ duration: 0.2, ease: "easeOut" }}
               className="absolute md:hidden right-0 top-12 z-50 w-50 rounded-md border bg-stone-100 dark:bg-stone-700 shadow-md"
             >
-              {NAV_LINKS.map(link => (
+              {NAV_LINKS.map((link, ind) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={handleClose}
-                  className="font-medium"
+                  className={cn(
+                    "block px-4 py-2 hover:bg-brand-foreground hover:underline text-[15px]",
+                    ind === 0 && "rounded-t-[inherit]",
+                  )}
                 >
-                  <span className="block px-4 py-2 hover:bg-input hover:underline text-[15px]">
-                    {link.name}
-                  </span>
+                  {link.name}
                 </Link>
               ))}
               <div className="border-t" />
               <Link
                 href="https://github.com"
                 target="_blank"
+                className="block px-4 py-2 hover:bg-secondary hover:text-white hover:underline text-[15px] rounded-b-[inherit]"
               >
-                <div className="px-4 py-2 hover:bg-input hover:underline text-[15px]">
-                  View Source
-                </div>
+                View Source
               </Link>
             </motion.div>
           )}

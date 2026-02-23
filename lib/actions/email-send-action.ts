@@ -22,6 +22,7 @@ export const sendEmailAction = async (formData: ContactFormInputs) => {
       }),
     });
   } catch (error) {
+    console.error("Server Error:", error);
     throw error;
   }
 }

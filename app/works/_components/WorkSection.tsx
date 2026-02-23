@@ -36,13 +36,13 @@ export default function WorkSection() {
 
   return (
     <div className="space-y-10">
-      <div className="flex flex-wrap gap-2.5">
+      <div className="flex flex-wrap gap-2">
         {WORK_TABS.map(tab => (
           <button
             key={tab}
             className={cn(
-              "px-4 py-1 rounded-full text-sm border border-border/80 hover:opacity-85 hover:scale-105 hover-effect",
-              selectedTab === tab ? "bg-indigo-300 dark:bg-secondary" : "bg-stone-100 dark:bg-stone-600"
+              "px-4 py-1 rounded-full text-sm border border-border/80 hover:opacity-85 hover:scale-105 hover-effect shrink-0",
+              selectedTab === tab ? "bg-indigo-300 dark:bg-secondary" : "bg-card"
             )}
             onClick={() => setSelectedTab(tab)}
           >

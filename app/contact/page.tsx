@@ -1,8 +1,8 @@
 import { SubTitle } from "@/components/ui/text";
 import { CONTACT_INFOS } from "@/constants";
 import { ContactInfo } from "@/types";
-import ContactForm from "./_components/ContactForm";
 import { Metadata } from "next";
+import ContactForm from "./_components/ContactForm2";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -17,6 +17,7 @@ export default function ContactPage() {
         Feel free to reach out.
       </p>
 
+      {/* <ContactForm /> */}
       <ContactForm />
 
       <section
@@ -47,7 +48,8 @@ interface ContactItemProps {
 
 const ContactItem = ({ info }: ContactItemProps) => (
   <div className="flex items-center gap-4">
-    <div className="bg-black/10 dark:bg-white/15 p-3 rounded-sm text-primary">
+
+    <div className="bg-accent p-3 rounded-sm text-primary">
       <info.icon size={22} />
     </div>
 

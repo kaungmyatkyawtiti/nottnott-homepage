@@ -8,21 +8,11 @@ import { SubTitle } from "@/components/ui/text"
 import InteractiveBtn from "@/components/animations/InteractiveBtn";
 import { BIO_TIMELINES, SOCIAL_LINKS } from "@/constants";
 import { SocialLink } from "@/types";
-import SlideText from "@/components/animations/SlideText";
-import RotatingBorder from "@/components/animations/RotatingBorder";
+import GrowingBorder from "@/components/animations/GrowingBorder";
 
 export default function HomePage() {
   return (
     <main title="Home" className="page-container space-y-10">
-      {/* Intro */}
-      <RotatingBorder className="p-px rounded-md">
-        <div className="h-10 w-full flex items-center justify-center bg-card rounded-md">
-          <SlideText className="absolute top-2 left-10 whitespace-nowrap text-base">
-            {`Hello, I'm an indie app developer based in Myanmar!`}
-          </SlideText>
-        </div>
-      </RotatingBorder>
-
       {/* Header */}
       <section className="flex flex-col md:flex-row md:items-start gap-5">
         <div className="flex-1">
@@ -33,7 +23,7 @@ export default function HomePage() {
         </div>
 
         <div className="flex-center">
-          <RotatingBorder className="rounded-full p-px">
+          <GrowingBorder className="rounded-full p-0.5">
             <Image
               src="/images/nott-nott.jpg"
               alt="Profile image"
@@ -42,7 +32,7 @@ export default function HomePage() {
               className="overflow-hidden rounded-full"
               loading="eager"
             />
-          </RotatingBorder>
+          </GrowingBorder>
         </div>
       </section>
 

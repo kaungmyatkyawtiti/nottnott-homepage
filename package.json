@@ -12,6 +12,7 @@
     "@hookform/resolvers": "^5.2.2",
     "@react-email/components": "^1.0.4",
     "@remixicon/react": "^4.8.0",
+    "@tanstack/react-form": "^1.28.3",
     "clsx": "^2.1.1",
     "immer": "^11.1.4",
     "motion": "^12.33.0",

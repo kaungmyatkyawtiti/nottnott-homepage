@@ -28,6 +28,7 @@ export default function ContactForm() {
     register,
     handleSubmit,
     reset,
+    clearErrors,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormInputs>({
     resolver: zodResolver(contactSchema),
@@ -48,10 +49,8 @@ export default function ContactForm() {
         : "Something went wrong";
       toast.error(errMsg);
     } finally {
-      reset(
-        defaultValues,
-        { keepErrors: true }
-      );
+      reset(defaultValues);
+      clearErrors();
     }
   }
 

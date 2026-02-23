@@ -2,25 +2,9 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
 @theme inline {
   --animate-wiggle: wiggle 1s ease-in-out infinite;
   --animate-spin-slow: spin-slow 6s linear infinite;
-
-  @keyframes spin {
-    from {
-      --angle: 0deg;
-    }
-
-    to {
-      --angle: 360deg;
-    }
-  }
 
   @keyframes wiggle {
 
@@ -66,11 +50,6 @@
 
   --color-brand-foreground: var(--brand-foreground);
   --color-brand-foreground-glass: var(--brand-foreground-glass);
-
-  --color-gradient-1: var(--gradient-1);
-  --color-gradient-2: var(--gradient-2);
-  --color-gradient-3: var(--gradient-3);
-  --color-gradient-4: var(--gradient-4);
 }
 
 :root {
@@ -96,11 +75,6 @@
 
   --brand-foreground: oklch(0.8137 0.0997 234.24);
   --brand-foreground-glass: oklch(0.8137 0.0997 234.24 / 0.2);
-
-  --gradient-1: oklch(0.78 0.12 185);
-  --gradient-2: oklch(0.76 0.14 260);
-  --gradient-3: oklch(0.85 0.14 85);
-  --gradient-4: oklch(0.78 0.12 185);
 }
 
 .dark {
@@ -126,11 +100,6 @@
 
   --brand-foreground: oklch(0.6706 0.1599 47.15);
   --brand-foreground-glass: oklch(0.6706 0.1599 47.15 / 0.2);
-
-  --gradient-1: oklch(0.72 0.10 200);
-  --gradient-2: oklch(0.70 0.11 270);
-  --gradient-3: oklch(0.78 0.12 75);
-  --gradient-4: oklch(0.72 0.10 200);
 }
 
 @layer base {
@@ -184,7 +153,7 @@
 }
 
 @utility page-container {
-  @apply py-10 md:py-16 px-4;
+  @apply pt-5 pb-10 md:pb-16 md:pt-8 px-4;
 }
 
 @utility hover-effect {
@@ -233,34 +202,4 @@
 
 @utility error-tooltip {
   @apply absolute right-0 top-full mt-1.5 px-3 py-1 rounded-md bg-destructive text-white text-xs shadow-lg z-50 whitespace-nowrap overflow-x-auto;
-}
-
-@utility card-glow {
-  @apply h-60 bg-card my-10 relative rounded-xl overflow-hidden;
-
-  &::after,
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    z-index: -1;
-    border-radius: 10px;
-    background-image: conic-gradient(from var(--angle),
-        #ff4545,
-        #00ff99,
-        #006aff,
-        #ff0095,
-        #ff4545);
-    animation: spin 3s linear infinite;
-  }
-
-  &::before {
-    filter: blur(1.5rem);
-    opacity: 0.5;
-  }
 }

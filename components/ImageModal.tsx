@@ -52,7 +52,7 @@ export const ImageModal = ({
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
-        className="relative w-[90vw] max-w-[90vw] max-h-[85vh] bg-card rounded-2xl border-2 border-secondary overflow-hidden flex flex-col shadow-md p-5 lg:p-10 space-y-6"
+        className="relative w-[90vw] max-w-[90vw] max-h-[90vh] bg-card rounded-2xl overflow-hidden flex flex-col shadow-md p-5 lg:p-10 space-y-6"
         style={{ maxWidth: 'calc(85vh * 16 / 9)' }}
       >
 
@@ -68,7 +68,7 @@ export const ImageModal = ({
         </div>
 
         {/* Image Container */}
-        <div className="w-full aspect-video relative shadow-inner overflow-hidden rounded-xl">
+        <div className="w-full aspect-video relative shadow-inner overflow-hidden rounded-xl border-2 border-secondary">
           <Image
             src={image}
             alt={title}
