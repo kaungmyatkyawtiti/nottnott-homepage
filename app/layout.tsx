@@ -5,7 +5,8 @@ import Providers from "@/components/Providers";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Toaster } from "sonner";
-import CuteGirlGif from "@/components/CuteGirlGif";
+import CuteGirlGif from "@/components/HomeBanner";
+import HomeBanner from "@/components/HomeBanner";
 
 const mplus = M_PLUS_Rounded_1c({
   weight: ['500'],
@@ -36,11 +37,7 @@ export default function RootLayout({
         <Providers>
           <main>
             <Header />
-
-            <div className="relative h-90 md:h-100 max-w-sm mx-auto overflow-hidden">
-              <CuteGirlGif />
-            </div>
-
+            <HomeBanner />
             <div className="max-w-xl mx-auto px-4">
               {children}
               <Toaster richColors />

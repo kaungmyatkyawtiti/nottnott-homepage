@@ -1,15 +1,11 @@
 "use client"
 
-import InteractiveBtn from "@/components/animations/InteractiveBtn";
+import LoadingButton from "@/components/LoadingButton";
 import { sendEmailAction } from "@/lib/actions/email-send-action";
 import cn from "@/lib/utils";
 import { contactSchema } from "@/lib/validations";
 import { ContactFormInputs } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  RiLoader2Fill,
-  RiSendPlane2Fill,
-} from "@remixicon/react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -112,18 +108,13 @@ export default function ContactForm() {
         />
       </div>
 
-      <InteractiveBtn
-        type="submit"
+      <LoadingButton
+        isSubmitting={isSubmitting}
         form="contact-form"
         className="mt-10"
-        disabled={isSubmitting}
       >
-        {isSubmitting
-          && <RiLoader2Fill className="animate-spin" />
-        }
-        Send message
-        <RiSendPlane2Fill size={20} />
-      </InteractiveBtn>
+        Send Message
+      </LoadingButton>
     </form>
   )
 }

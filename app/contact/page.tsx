@@ -17,7 +17,6 @@ export default function ContactPage() {
         Feel free to reach out.
       </p>
 
-      {/* <ContactForm /> */}
       <ContactForm />
 
       <section
