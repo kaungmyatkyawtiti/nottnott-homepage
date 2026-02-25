@@ -5,7 +5,6 @@ import Providers from "@/components/Providers";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Toaster } from "sonner";
-import CuteGirlGif from "@/components/HomeBanner";
 import HomeBanner from "@/components/HomeBanner";
 
 const mplus = M_PLUS_Rounded_1c({

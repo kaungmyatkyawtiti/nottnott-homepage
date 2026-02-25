@@ -1,17 +1,17 @@
 "use client";
 
-import { motion } from "motion/react";
-import { ReactNode } from "react";
+import { motion } from "motion/react"
+import { ReactNode } from "react"
 
-export default function HomeTemplate({
-  children,
-}: {
-  children: ReactNode;
-}) {
+interface PageTransitionProps {
+  children: ReactNode,
+}
+
+export default function AnimatedTemplate({ children }: PageTransitionProps) {
   return (
     <motion.div
-      initial={{ y: 20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ ease: "easeInOut", duration: 0.75 }}
     >
       {children}
